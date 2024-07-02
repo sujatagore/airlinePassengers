@@ -1,0 +1,25 @@
+
+<div>
+    <mat-card class="mb-2">
+        <span
+            class="circle"
+            [ngClass]="{
+                'bg-success' : getPass.checkInStatus,
+                'bg-danger' : !getPass.checkInStatus
+            }"
+            ></span>
+        <mat-card-title class="ml-2">
+                <input [disabled]="!isInEditMode" type="text" class="form-control" #passName [value]="getPass.name">
+        </mat-card-title>
+        <mat-card-subtitle>
+            Check In Date: {{ getPass.checkInDate }}
+            <br>
+            Children: {{ getPass.children }}
+        </mat-card-subtitle>
+        <mat-card-actions  class="d-flex justify-content-between">
+            <button mat-stroked-button color="accent" #editBtn *ngIf="!isInEditMode" (click)="isInEditMode = true">Edit</button>
+            <button mat-stroked-button color="accent" #updBtn *ngIf="isInEditMode" (click)="isInEditMode = false;onUpdate()">Update</button>
+            <button mat-stroked-button color="warn" #delBtn (click)="onDelete()">Remove</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
